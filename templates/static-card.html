@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>黑哥 Ai 图片卡片</title>
+  <style>
+    :root {
+      --paper: #f7f4ec;
+      --ink: #3f403c;
+      --muted: #6d6a63;
+      --green: #a8f06d;
+      --blue: #9cc7df;
+      --peach: #efb48d;
+      --line: rgba(63, 64, 60, 0.16);
+      --shadow: rgba(38, 37, 32, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      background: #ebe6dc;
+      font-family: "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+    }
+
+    .deck {
+      width: 1200px;
+    }
+
+    .card {
+      position: relative;
+      width: 1200px;
+      height: 1600px;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 86% 14%, rgba(156, 199, 223, 0.22), transparent 310px),
+        radial-gradient(circle at 14% 92%, rgba(239, 180, 141, 0.18), transparent 330px),
+        var(--paper);
+      page-break-after: always;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 54px;
+      border: 3px solid var(--line);
+      border-radius: 32px;
+      pointer-events: none;
+    }
+
+    .inner {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      padding: 112px 104px 104px;
+    }
+
+    .title {
+      margin: 0;
+      font-size: 86px;
+      line-height: 1.16;
+      font-weight: 950;
+      letter-spacing: 0;
+    }
+
+    .highlight {
+      position: relative;
+      display: inline-block;
+      z-index: 1;
+    }
+
+    .highlight::before {
+      content: "";
+      position: absolute;
+      left: -12px;
+      right: -12px;
+      bottom: 10px;
+      height: 44%;
+      border-radius: 18px;
+      background: var(--green);
+      z-index: -1;
+      transform: rotate(-1.2deg);
+    }
+
+    .subtitle {
+      margin: 44px 0 0;
+      max-width: 920px;
+      font-size: 42px;
+      line-height: 1.48;
+      font-weight: 820;
+      color: var(--muted);
+    }
+
+    .callout {
+      margin-top: 72px;
+      width: fit-content;
+      max-width: 880px;
+      padding: 30px 36px;
+      border-radius: 30px;
+      background: #2d2f2a;
+      color: #f7f4ec;
+      font-size: 42px;
+      line-height: 1.36;
+      font-weight: 900;
+      box-shadow: 0 18px 36px var(--shadow);
+      transform: rotate(-1.2deg);
+    }
+
+    .signature {
+      position: absolute;
+      right: 112px;
+      bottom: 112px;
+      font-size: 26px;
+      font-weight: 760;
+      color: rgba(63, 64, 60, 0.42);
+    }
+  </style>
+</head>
+<body>
+  <main class="deck">
+    <section class="card" id="card-1">
+      <div class="inner">
+        <h1 class="title">把标题写在这里，<br><span class="highlight">重点打亮</span></h1>
+        <p class="subtitle">这里放一句人话解释，不要写成说明书。</p>
+        <div class="callout">这里放最适合截图转发的一句。</div>
+      </div>
+      <div class="signature">黑哥 Ai</div>
+    </section>
+  </main>
+</body>
+</html>
+

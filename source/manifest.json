@@ -1,0 +1,27 @@
+{
+  "name": "heige-image-cards",
+  "version": "1.0.0",
+  "brand": "HeiGeAi",
+  "description": "黑哥图片卡片锻造系统。把文章、教程、观点和工作流锻造成可截图、可转发、可保存的中文图片卡片。",
+  "license": "MIT",
+  "tags": [
+    "image-cards",
+    "social-cards",
+    "chinese",
+    "html-rendering",
+    "agent-skill"
+  ],
+  "runtimes": [
+    "Claude Code",
+    "Codex",
+    "OpenClaw",
+    "Hermes",
+    "Cursor",
+    "Windsurf",
+    "Cline",
+    "Aider",
+    "ChatGPT",
+    "Claude.ai"
+  ]
+}
+
