@@ -15,6 +15,7 @@
 - 不使用动画。
 - 不使用远程字体。
 - 不使用需要联网的资源。
+- 不执行页面 JavaScript。
 - 不使用 `backdrop-filter`。
 - 不使用 SVG 文字替代正文。
 - 所有文字必须能被浏览器正常渲染。
@@ -40,12 +41,20 @@ render.mjs
 输出：outputs/*.png
 视口：１２００ × １６００
 动画：disabled
+脚本：disabled
+网络：http 和 https 拦截
 ```
 
 如果系统没有 Playwright 浏览器缓存，可以使用系统 Chrome：
 
 ```text
 CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
+```
+
+默认只允许读取项目目录内的 HTML，并输出到项目目录内。确实需要处理可信外部文件时，再显式设置：
+
+```text
+HEIGE_ALLOW_EXTERNAL_PATHS=1
 ```
 
 ## 抽检规则
@@ -60,4 +69,5 @@ CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"
 - 中文引号是否统一。
 - 英文单词是否撑开容器。
 - 是否出现破折号。
-
+- 是否没有远程资源依赖。
+- 是否没有不可信外部 HTML。

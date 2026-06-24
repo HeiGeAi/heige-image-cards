@@ -10,6 +10,7 @@ ROOT = Path(__file__).resolve().parent
 ADAPTERS = ROOT / "adapters"
 
 COMMON_DIRS = ["references", "templates", "examples", "scripts", "assets", "docs"]
+COMMON_FILES = ["SECURITY.md", "INSTALL.md", "LICENSE"]
 
 
 def read_text(path: Path) -> str:
@@ -32,6 +33,10 @@ def copy_common(dst: Path) -> None:
         src = ROOT / dirname
         if src.exists():
             copy_tree(src, dst / dirname)
+    for filename in COMMON_FILES:
+        src = ROOT / filename
+        if src.exists():
+            shutil.copy2(src, dst / filename)
 
 
 def build_claude(skill: str) -> None:

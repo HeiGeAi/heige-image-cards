@@ -4,6 +4,7 @@
 
 - `README.md`：GitHub 介绍页。
 - `SKILL.md`：根技能入口。
+- `SECURITY.md`：安全边界和安装前检查。
 - `INSTALL.md`：跨平台安装说明。
 - `CHANGELOG.md`：版本记录。
 - `LICENSE`：MIT 许可证。
@@ -40,4 +41,3 @@
 - `adapters/openclaw/heige-image-cards/`
 - `adapters/hermes/heige-image-cards/`
 - `adapters/prompt/heige-image-cards.md`
-

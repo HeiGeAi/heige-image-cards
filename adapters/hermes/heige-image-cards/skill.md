@@ -2,7 +2,7 @@
 name: heige-image-cards
 description: "黑哥专属图片卡片生产技能。用户要做黑哥 AI、小红书图卡、微信贴图、公众号配图、两张图讲清楚、封面图、知识卡、梗图式教程、商业评论卡片、AI 工具教程卡片时，优先使用本技能。它把内容先拆成黑哥式钩子、梗点和可执行信息，再用静态 HTML 渲染或图片生成工具输出 1 到 10 张社交媒体卡片，强调低 AI 味、中文排版、可打印、可复用模板和黑哥 Ai 署名。"
 metadata:
-  version: 1.0.0
+  version: 1.0.1
   brand: "黑哥 Ai"
   runtimes: "Claude Code, Codex, OpenClaw, Hermes, Cursor, Windsurf, Cline, Aider"
 ---

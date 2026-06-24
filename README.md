@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![version](https://img.shields.io/badge/version-1.0.0-a8f06d.svg)
+![version](https://img.shields.io/badge/version-1.0.1-a8f06d.svg)
 ![license](https://img.shields.io/badge/license-MIT-green.svg)
 ![agents](https://img.shields.io/badge/Agents-Claude%20Code%20·%20Codex%20·%20OpenClaw%20·%20Hermes%20·%20Cursor-blue.svg)
 ![render](https://img.shields.io/badge/render-HTML%20to%20PNG-black.svg)
@@ -192,6 +192,14 @@ heige-image-cards/
 - 不自动编造数据、案例和引用。
 - 不追求满屏装饰。信息清楚，比装得像设计师更重要。
 
+## 安全边界
+
+- 默认只渲染项目目录内的 HTML，并输出到项目目录内。
+- 渲染时关闭页面 JavaScript，并拦截 `http` 和 `https` 远程资源。
+- 卡片节点 id 会清洗后再进入 PNG 文件名。
+- 安装前建议运行 `python3 build.py && python3 validate.py`。
+- 更完整的检查见 [SECURITY.md](./SECURITY.md)。
+
 ## 许可证 License
 
 MIT License。出品 HeiGeAi（黑哥 Ai）。
@@ -216,4 +224,3 @@ python3 validate.py
 ```
 
 Built by HeiGeAi. MIT License.
-
