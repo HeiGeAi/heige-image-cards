@@ -5,6 +5,7 @@
 ```bash
 git clone https://github.com/HeiGeAi/heige-image-cards.git
 cd heige-image-cards
+npm ci --ignore-scripts
 python3 build.py
 python3 validate.py
 ```
@@ -13,6 +14,7 @@ python3 validate.py
 
 ```bash
 cp -R adapters/claude-code/heige-image-cards ~/.claude/skills/
+cd ~/.claude/skills/heige-image-cards && npm ci --ignore-scripts
 ```
 
 新开会话后直接说：
@@ -23,23 +25,31 @@ cp -R adapters/claude-code/heige-image-cards ~/.claude/skills/
 
 ## Codex
 
-把 Codex 适配版复制到项目里：
+把完整 Codex 适配版安装到本机，保留渲染脚本和锁定依赖：
 
 ```bash
-cp adapters/codex/heige-image-cards/AGENTS.md ./AGENTS.heige-image-cards.md
+mkdir -p ~/.codex/skills
+cp -R adapters/codex/heige-image-cards ~/.codex/skills/
+cd ~/.codex/skills/heige-image-cards && npm ci --ignore-scripts
 ```
 
-然后把其中内容合并进当前项目的 `AGENTS.md`，或在当前线程里引用它。
+需要项目级常驻规则时，再把适配目录中的 `AGENTS.md` 合并进当前项目。
 
 ## OpenClaw
 
 ```bash
 cp -R adapters/openclaw/heige-image-cards ~/.openclaw/skills/
+cd ~/.openclaw/skills/heige-image-cards && npm ci --ignore-scripts
 ```
 
 ## Hermes
 
-使用 `adapters/hermes/heige-image-cards/skill.md` 和 `manifest.json` 加载为技能定义。
+先复制完整适配目录并安装锁定依赖，再使用其中的 `skill.md` 和 `manifest.json` 加载技能定义：
+
+```bash
+cp -R adapters/hermes/heige-image-cards ./heige-image-cards-hermes
+cd ./heige-image-cards-hermes && npm ci --ignore-scripts
+```
 
 ## Cursor、Windsurf、Cline、Aider
 
@@ -58,6 +68,12 @@ HEIGE_ALLOW_EXTERNAL_PATHS=1 node scripts/render-static-cards.mjs /absolute/path
 ```
 
 如果 Playwright 没有默认浏览器，可以指定系统 Chrome：
+
+```bash
+npx playwright-core install chromium
+```
+
+也可以直接指定已经安装的系统 Chrome：
 
 ```bash
 CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \

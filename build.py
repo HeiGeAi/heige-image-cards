@@ -38,6 +38,18 @@ def copy_common(dst: Path) -> None:
         if src.exists():
             shutil.copy2(src, dst / filename)
 
+    package = json.loads(read_text(ROOT / "package.json"))
+    runtime_package = {
+        "name": package["name"],
+        "version": package["version"],
+        "private": True,
+        "type": "module",
+        "scripts": {"render": package["scripts"]["render"]},
+        "dependencies": package["dependencies"],
+    }
+    write_text(dst / "package.json", json.dumps(runtime_package, ensure_ascii=False, indent=2) + "\n")
+    shutil.copy2(ROOT / "package-lock.json", dst / "package-lock.json")
+
 
 def build_claude(skill: str) -> None:
     target = ADAPTERS / "claude-code" / "heige-image-cards"
