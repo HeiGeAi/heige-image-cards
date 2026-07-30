@@ -2,6 +2,10 @@
 
 heige-image-cards 默认面向本地可信内容生产。它会读取项目内的 Markdown、HTML、模板和图片，再用浏览器截图导出 PNG。
 
+## 漏洞报告
+
+请不要在公开 Issue 中披露未修复的安全漏洞。请通过 [GitHub 私密漏洞报告](https://github.com/HeiGeAi/heige-image-cards/security/advisories/new) 提交复现步骤、影响版本和影响范围。
+
 ## 默认安全边界
 
 - 默认只渲染项目目录内的 `.html` 和 `.htm` 文件。

@@ -89,12 +89,20 @@ def main() -> None:
     expected_adapters = [
         "claude-code/heige-image-cards/SKILL.md",
         "claude-code/heige-image-cards/SECURITY.md",
+        "claude-code/heige-image-cards/package.json",
+        "claude-code/heige-image-cards/package-lock.json",
         "codex/heige-image-cards/AGENTS.md",
         "codex/heige-image-cards/SECURITY.md",
+        "codex/heige-image-cards/package.json",
+        "codex/heige-image-cards/package-lock.json",
         "openclaw/heige-image-cards/openclaw.json",
         "openclaw/heige-image-cards/SECURITY.md",
+        "openclaw/heige-image-cards/package.json",
+        "openclaw/heige-image-cards/package-lock.json",
         "hermes/heige-image-cards/manifest.json",
         "hermes/heige-image-cards/SECURITY.md",
+        "hermes/heige-image-cards/package.json",
+        "hermes/heige-image-cards/package-lock.json",
         "prompt/heige-image-cards.md",
     ]
     if adapters.exists():

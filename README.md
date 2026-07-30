@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![version](https://img.shields.io/badge/version-1.0.1-a8f06d.svg)
+![version](https://img.shields.io/badge/version-1.0.2-a8f06d.svg)
 ![license](https://img.shields.io/badge/license-MIT-green.svg)
 ![agents](https://img.shields.io/badge/Agents-Claude%20Code%20·%20Codex%20·%20OpenClaw%20·%20Hermes%20·%20Cursor-blue.svg)
 ![render](https://img.shields.io/badge/render-HTML%20to%20PNG-black.svg)
@@ -71,11 +71,23 @@ heige-image-cards 是一个面向 Agent 工具的中文图片卡片生产系统�
 
 ## 快速开始 Quick Start
 
-### １．安装到 Claude Code
+### １．获取仓库
+
+需要 Node.js 18 或更高版本。
 
 ```bash
 git clone https://github.com/HeiGeAi/heige-image-cards.git
-cp -R heige-image-cards/adapters/claude-code/heige-image-cards ~/.claude/skills/
+cd heige-image-cards
+```
+
+后续按运行时选择一个安装方式。每段命令都以仓库根目录为起点。
+
+### ２．安装到 Claude Code
+
+```bash
+mkdir -p ~/.claude/skills
+cp -R adapters/claude-code/heige-image-cards ~/.claude/skills/
+(cd ~/.claude/skills/heige-image-cards && npm ci --ignore-scripts)
 ```
 
 然后新开会话，直接说：
@@ -84,27 +96,54 @@ cp -R heige-image-cards/adapters/claude-code/heige-image-cards ~/.claude/skills/
 用 heige-image-cards，把这段内容做成２张黑哥 Ai 图卡。封面要有梗，第二张讲清楚方法。
 ```
 
-### ２．在 Codex 中使用
+### ３．安装到 Codex
 
-把 Codex 适配版合并进项目根目录的 `AGENTS.md`，或直接把它作为项目规则引用：
+复制完整 Codex 适配目录，保留渲染脚本和锁定依赖：
 
 ```bash
-cp heige-image-cards/adapters/codex/heige-image-cards/AGENTS.md ./AGENTS.heige-image-cards.md
+mkdir -p ~/.codex/skills
+cp -R adapters/codex/heige-image-cards ~/.codex/skills/
+(cd ~/.codex/skills/heige-image-cards && npm ci --ignore-scripts)
 ```
 
-也可以把核心规则粘进 Codex 当前线程，让它按黑哥图卡流程工作。
+需要项目级常驻规则时，再把适配目录中的 `AGENTS.md` 合并进当前项目。
 
-### ３．作为通用 system prompt 使用
+### ４．安装到 Hermes
 
-适用于 ChatGPT、Claude.ai、Aider、Hermes、OpenClaw、Cursor、Windsurf、Cline：
+复制完整 Hermes 适配目录并安装锁定依赖，再使用其中的 `skill.md` 和 `manifest.json` 加载技能定义：
+
+```bash
+cp -R adapters/hermes/heige-image-cards ../heige-image-cards-hermes
+(cd ../heige-image-cards-hermes && npm ci --ignore-scripts)
+```
+
+### ５．安装 Chromium 运行时
+
+如果系统没有可用的 Chrome 或 Chromium，选择当前运行时对应的一条命令执行：
+
+```bash
+# Claude Code
+(cd ~/.claude/skills/heige-image-cards && npx playwright-core install chromium)
+
+# Codex
+(cd ~/.codex/skills/heige-image-cards && npx playwright-core install chromium)
+
+# Hermes
+(cd ../heige-image-cards-hermes && npx playwright-core install chromium)
+```
+
+### ６．作为通用 system prompt 使用
+
+适用于 ChatGPT、Claude.ai、Aider、OpenClaw、Cursor、Windsurf、Cline：
 
 ```text
 读取 heige-image-cards/SKILL.md 和 references/，按里面的流程把我的内容做成图片卡片。
 ```
 
-### ４．生成适配包
+### ７．生成适配包
 
 ```bash
+npm ci --ignore-scripts
 python3 build.py
 python3 validate.py
 ```
@@ -125,9 +164,9 @@ adapters/
 | 平台 | 能不能用 | 安装方式 | 输出方式 |
 |---|:---:|---|---|
 | Claude Code | ✅ | 放进 `~/.claude/skills/` | 自动写文件 |
-| Codex | ✅ | 合并到 `AGENTS.md` 或项目规则 | 自动写文件 |
+| Codex | ✅ | 完整适配目录 + `npm ci` | 自动写文件 |
 | OpenClaw | ✅ | 使用 `SKILL.md` 和 `openclaw.json` | 自动写文件 |
-| Hermes | ✅ | 加载 `skill.md` | 自动写文件 |
+| Hermes | ✅ | 完整适配目录 + `npm ci` | 自动写文件 |
 | Cursor / Windsurf / Cline | ✅ | 作为规则或 prompt 导入 | 自动写文件 |
 | Aider | ✅ | 作为 repo instruction 使用 | 写入项目 |
 | ChatGPT / Claude.ai | ✅ | 粘贴 SKILL 和 references | 复制 HTML 或 PNG 流程 |
@@ -219,6 +258,7 @@ It works with Claude Code, Codex, OpenClaw, Hermes, Cursor, Windsurf, Cline, Aid
 ```bash
 git clone https://github.com/HeiGeAi/heige-image-cards.git
 cd heige-image-cards
+npm ci --ignore-scripts
 python3 build.py
 python3 validate.py
 ```
