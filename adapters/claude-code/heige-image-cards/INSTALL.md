@@ -2,6 +2,8 @@
 
 ## 获取项目
 
+需要 Node.js 18 或更高版本。
+
 ```bash
 git clone https://github.com/HeiGeAi/heige-image-cards.git
 cd heige-image-cards

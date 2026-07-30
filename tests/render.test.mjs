@@ -184,3 +184,21 @@ test('generated Claude adapter carries locked dependencies and renders after npm
     fs.rmSync(fixtureRoot, { recursive: true, force: true });
   }
 });
+
+test('root and generated runtime packages share version and Node support', () => {
+  const expectedVersion = '1.0.2';
+  const rootPackage = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
+  assert.equal(rootPackage.version, expectedVersion);
+  assert.equal(rootPackage.engines?.node, '>=18');
+
+  for (const runtime of ['claude-code', 'codex', 'hermes', 'openclaw']) {
+    const packagePath = path.join(ROOT, 'adapters', runtime, 'heige-image-cards', 'package.json');
+    const packageJson = JSON.parse(fs.readFileSync(packagePath, 'utf8'));
+    assert.equal(packageJson.version, expectedVersion, `${runtime} version`);
+    assert.equal(packageJson.engines?.node, '>=18', `${runtime} Node engine`);
+  }
+
+  const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'source', 'manifest.json'), 'utf8'));
+  assert.equal(manifest.version, expectedVersion);
+  assert.match(fs.readFileSync(path.join(ROOT, 'SKILL.md'), 'utf8'), /version: 1\.0\.2\b/);
+});

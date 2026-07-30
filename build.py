@@ -44,6 +44,7 @@ def copy_common(dst: Path) -> None:
         "version": package["version"],
         "private": True,
         "type": "module",
+        "engines": package["engines"],
         "scripts": {"render": package["scripts"]["render"]},
         "dependencies": package["dependencies"],
     }

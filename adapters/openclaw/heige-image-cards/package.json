@@ -1,8 +1,11 @@
 {
   "name": "heige-image-cards",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=18"
+  },
   "scripts": {
     "render": "node scripts/render-static-cards.mjs templates/static-card.html outputs"
   },
