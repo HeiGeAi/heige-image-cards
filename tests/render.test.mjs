@@ -206,7 +206,11 @@ test('generated Claude adapter carries locked dependencies and renders after npm
 });
 
 test('root and generated runtime packages share version and Node support', () => {
-  const expectedVersion = '1.0.2';
+  // source/manifest.json is the single source of truth for the version;
+  // every other location must agree with it.
+  const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'source', 'manifest.json'), 'utf8'));
+  const expectedVersion = manifest.version;
+
   const rootPackage = JSON.parse(fs.readFileSync(path.join(ROOT, 'package.json'), 'utf8'));
   assert.equal(rootPackage.version, expectedVersion);
   assert.equal(rootPackage.engines?.node, '>=18');
@@ -218,7 +222,15 @@ test('root and generated runtime packages share version and Node support', () =>
     assert.equal(packageJson.engines?.node, '>=18', `${runtime} Node engine`);
   }
 
-  const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'source', 'manifest.json'), 'utf8'));
-  assert.equal(manifest.version, expectedVersion);
-  assert.match(fs.readFileSync(path.join(ROOT, 'SKILL.md'), 'utf8'), /version: 1\.0\.2\b/);
+  const escapedVersion = expectedVersion.replace(/\./g, '\\.');
+  assert.match(
+    fs.readFileSync(path.join(ROOT, 'SKILL.md'), 'utf8'),
+    new RegExp(`version: ${escapedVersion}\\b`),
+    'SKILL.md version',
+  );
+  assert.match(
+    fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8'),
+    new RegExp(`badge/version-${escapedVersion}-`),
+    'README version badge',
+  );
 });
