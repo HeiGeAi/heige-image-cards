@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -80,9 +81,16 @@ def main() -> None:
 
     package = json.loads((ROOT / "package.json").read_text(encoding="utf-8"))
     scripts = package.get("scripts", {})
-    dangerous_terms = ["curl ", "wget ", "bash -c", "e" + "val "]
+    # Heuristic tripwire, not a security boundary: it flags obvious download
+    # and shell-out patterns in package scripts so a human reviews them.
+    dangerous_patterns = [
+        re.compile(r"curl"),
+        re.compile(r"wget"),
+        re.compile(r"(?:ba|z|k)?shs+-c"),
+        re.compile(r"e" + r"val"),
+    ]
     for name, script in scripts.items():
-        if any(term in script for term in dangerous_terms):
+        if any(pattern.search(script) for pattern in dangerous_patterns):
             fail(f"dangerous package script {name}")
 
     adapters = ROOT / "adapters"
