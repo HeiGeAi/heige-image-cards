@@ -26,6 +26,10 @@ HEIGE_ALLOW_EXTERNAL_PATHS=1 node scripts/render-static-cards.mjs /absolute/path
 
 不建议对群聊、邮件、网页下载、陌生仓库里的 HTML 直接打开这个开关。
 
+## 代码执行级环境变量
+
+`PLAYWRIGHT_PATH` 的值会被渲染脚本直接 `require()` 加载，`CHROME_PATH` 的值会被当作浏览器可执行文件启动。能控制这两个变量就等于能在本机执行任意代码，所以只在自己完全控制的环境里设置，不要让不可信的脚本或配置注入这两个变量。
+
 ## 安装前检查
 
 安装到 Claude Code、Codex、OpenClaw 或其它 agent 工具前，建议先运行：

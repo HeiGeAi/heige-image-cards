@@ -82,3 +82,5 @@ CHROME_PATH="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
 PLAYWRIGHT_PATH="/path/to/playwright/index.js" \
 node scripts/render-static-cards.mjs templates/static-card.html outputs
 ```
+
+注意：`PLAYWRIGHT_PATH` 的值会被直接 `require()` 加载，`CHROME_PATH` 的值会被当作可执行文件启动。这两个变量等价于代码执行级开关，只在你完全控制本机环境变量时设置，不要从不可信来源继承。
