@@ -201,6 +201,12 @@ adapters/
 heige-image-cards/
 ├── SKILL.md
 ├── README.md
+├── INSTALL.md
+├── SECURITY.md
+├── CHANGELOG.md
+├── MANIFEST.md
+├── LICENSE
+├── package.json
 ├── build.py
 ├── validate.py
 ├── source/
@@ -220,7 +226,15 @@ heige-image-cards/
 ├── assets/previews/
 ├── scripts/
 │   └── render-static-cards.mjs
-└── adapters/
+├── tests/
+│   └── render.test.mjs
+├── evals/
+│   └── evals.json
+├── docs/
+│   ├── SCHEMA.md
+│   └── COMPATIBILITY.md
+├── adapters/
+└── .github/workflows/
 ```
 
 ## 诚实边界
