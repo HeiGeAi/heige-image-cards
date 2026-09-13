@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![version](https://img.shields.io/badge/version-1.0.2-a8f06d.svg)
+![version](https://img.shields.io/badge/version-1.0.3-a8f06d.svg)
 ![license](https://img.shields.io/badge/license-MIT-green.svg)
 ![agents](https://img.shields.io/badge/Agents-Claude%20Code%20·%20Codex%20·%20OpenClaw%20·%20Hermes%20·%20Cursor-blue.svg)
 ![render](https://img.shields.io/badge/render-HTML%20to%20PNG-black.svg)
