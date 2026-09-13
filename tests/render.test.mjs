@@ -155,6 +155,7 @@ test('installation docs install complete Codex and Hermes runtime adapters', () 
   const install = fs.readFileSync(path.join(ROOT, 'INSTALL.md'), 'utf8');
   assert.match(install, /cp -R adapters\/codex\/heige-image-cards/);
   assert.match(install, /cp -R adapters\/hermes\/heige-image-cards/);
+  assert.match(install, /cp -R adapters\/hermes\/heige-image-cards \.\.\/heige-image-cards-hermes/);
   assert.match(install, /npx playwright-core install chromium/);
 
   const readme = fs.readFileSync(path.join(ROOT, 'README.md'), 'utf8');

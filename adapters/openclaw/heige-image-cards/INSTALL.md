@@ -49,8 +49,8 @@ cd ~/.openclaw/skills/heige-image-cards && npm ci --ignore-scripts
 先复制完整适配目录并安装锁定依赖，再使用其中的 `skill.md` 和 `manifest.json` 加载技能定义：
 
 ```bash
-cp -R adapters/hermes/heige-image-cards ./heige-image-cards-hermes
-cd ./heige-image-cards-hermes && npm ci --ignore-scripts
+cp -R adapters/hermes/heige-image-cards ../heige-image-cards-hermes
+cd ../heige-image-cards-hermes && npm ci --ignore-scripts
 ```
 
 ## Cursor、Windsurf、Cline、Aider
