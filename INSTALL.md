@@ -63,7 +63,7 @@ cd ./heige-image-cards-hermes && npm ci --ignore-scripts
 node scripts/render-static-cards.mjs templates/static-card.html outputs
 ```
 
-默认只渲染项目目录内的 HTML，并输出到项目目录内。确实要处理可信外部文件时，先确认来源，再显式开启：
+相对路径以当前工作目录为基准解析，与常见 CLI 一致。默认只渲染项目目录内的 HTML，并输出到项目目录内。确实要处理可信外部文件时，先确认来源，再显式开启：
 
 ```bash
 HEIGE_ALLOW_EXTERNAL_PATHS=1 node scripts/render-static-cards.mjs /absolute/path/cards.html /absolute/path/output

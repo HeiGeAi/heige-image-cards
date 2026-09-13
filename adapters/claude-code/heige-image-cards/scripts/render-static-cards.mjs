@@ -14,9 +14,11 @@ const root = path.resolve(__dirname, "..");
 const realRoot = await realpath(root);
 const allowExternalPaths = process.env.HEIGE_ALLOW_EXTERNAL_PATHS === "1";
 
-function resolveProjectPath(input, fallback) {
-  const raw = input || fallback;
-  return path.resolve(path.isAbsolute(raw) ? raw : path.join(root, raw));
+function resolveProjectPath(input) {
+  // Relative paths resolve against the caller's working directory,
+  // matching standard CLI behavior. The root boundary checks below
+  // still keep reads and writes inside the project by default.
+  return path.resolve(input);
 }
 
 function assertInsideRoot(targetPath, label) {
@@ -76,6 +78,7 @@ async function writePngSafely(outputPath, png) {
     `.${path.basename(outputPath)}.${process.pid}.${randomUUID()}.tmp`,
   );
   try {
+    await assertRealPathInsideRoot(path.dirname(outputPath), "Output directory");
     await writeFile(temporaryPath, png, { flag: "wx" });
     await assertRealPathInsideRoot(path.dirname(outputPath), "Output directory");
     const latest = await lstatIfPresent(outputPath);
@@ -99,10 +102,10 @@ function sanitizeFilePart(value, fallback) {
 }
 
 const htmlPath = process.argv[2]
-  ? resolveProjectPath(process.argv[2], "")
+  ? resolveProjectPath(process.argv[2])
   : path.join(root, "templates", "static-card.html");
 const outputDir = process.argv[3]
-  ? resolveProjectPath(process.argv[3], "")
+  ? resolveProjectPath(process.argv[3])
   : path.join(root, "outputs");
 
 assertInsideRoot(htmlPath, "HTML input");
@@ -163,6 +166,19 @@ try {
       if (url.protocol === "http:" || url.protocol === "https:") {
         await route.abort("blockedbyclient");
         return;
+      }
+      if (url.protocol === "file:" && !allowExternalPaths) {
+        let resolved = null;
+        try {
+          resolved = await realpath(fileURLToPath(url));
+        } catch {
+          resolved = null;
+        }
+        const relative = resolved ? path.relative(realRoot, resolved) : "..";
+        if (relative.startsWith("..") || path.isAbsolute(relative)) {
+          await route.abort("blockedbyclient");
+          return;
+        }
       }
       await route.continue();
     });
