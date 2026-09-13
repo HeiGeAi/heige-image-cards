@@ -149,11 +149,12 @@ heige-cards/[topic-slug]/
 ├── analysis.md
 ├── card-copy.md
 ├── cards.html
-├── render.mjs
 ├── 01-cover.png
 ├── 02-method.png
 └── qa.md
 ```
+
+渲染统一调用仓库自带的 `scripts/render-static-cards.mjs`（各适配包内含同名脚本），按任务新写渲染脚本会绕过已加固的路径边界。
 
 如果是在 Codex 桌面项目里给用户交付，最终 PNG 和 HTML 放到 `outputs/` 下。
 

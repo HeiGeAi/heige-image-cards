@@ -25,14 +25,13 @@
 
 ```text
 cards.html
-render.mjs
 01-cover.png
 02-method.png
 ```
 
 ## Playwright 导出建议
 
-使用本项目 `scripts/render-static-cards.mjs` 作为起点。
+渲染直接调用本项目 `scripts/render-static-cards.mjs`（各适配包内含同名脚本），不要为单个任务新写 `render.mjs`。
 
 默认约定：
 
