@@ -39,7 +39,7 @@ heige-image-cards 是一个面向 Agent 工具的中文图片卡片生产系统�
 | 出图前 | 直接套模板或丢 prompt | 先拆黑哥钩子、真实价值和读者动作 |
 | 文案 | 像说明书，缺传播点 | 表层有梗，底层有方法 |
 | 中文文字 | 生图容易糊字、错字、漏字 | 关键文字走 HTML 渲染，逐字准确 |
-| 视觉 | 模板味重，换个项目就不认得 | 暖纸底、深墨字、荧光绿、黑底气泡，固定黑哥 Ai 署名 |
+| 视觉 | 模板味重，换个项目就不认得 | 暖纸底、深墨字、荧光绿、黑底气泡，固定问问黑哥署名 |
 | 改稿 | 改一处牵全身 | 文案、HTML、PNG 三层可复查 |
 | 平台 | 只服务某一个工具 | Claude Code、Codex、OpenClaw、Hermes、Cursor、Windsurf、Cline、Aider 都能用 |
 
@@ -93,7 +93,7 @@ cp -R adapters/claude-code/heige-image-cards ~/.claude/skills/
 然后新开会话，直接说：
 
 ```text
-用 heige-image-cards，把这段内容做成２张黑哥 Ai 图卡。封面要有梗，第二张讲清楚方法。
+用 heige-image-cards，把这段内容做成２张问问黑哥图卡。封面要有梗，第二张讲清楚方法。
 ```
 
 ### ３．安装到 Codex
@@ -176,7 +176,7 @@ adapters/
 ### ２ 张教程卡
 
 ```text
-把这个 Codex 使用技巧做成２张黑哥 Ai 图卡：
+把这个 Codex 使用技巧做成２张问问黑哥图卡：
 在 AGENTS.md 里加一句每次回复先叫我老公，用来判断 Codex 有没有读到项目规则。
 封面要好玩，第二张讲清楚怎么用。
 ```
@@ -255,7 +255,7 @@ heige-image-cards/
 
 ## 许可证 License
 
-MIT License。出品 HeiGeAi（黑哥 Ai）。
+MIT License。出品 HeiGeAi（问问黑哥）。
 
 ---
 
@@ -281,4 +281,4 @@ Built by HeiGeAi. MIT License.
 
 ## 更多开源工具
 
-本项目属于黑哥 AI 的开源武器库。全部开源项目的清单、用途和协议,见 [heigeai.com/opensource](https://www.heigeai.com/opensource/)。
+本项目属于问问黑哥的开源武器库。全部开源项目的清单、用途和协议,见 [heigeai.com/opensource](https://www.heigeai.com/opensource/)。
