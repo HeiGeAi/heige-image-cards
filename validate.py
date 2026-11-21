@@ -84,10 +84,10 @@ def main() -> None:
     # Heuristic tripwire, not a security boundary: it flags obvious download
     # and shell-out patterns in package scripts so a human reviews them.
     dangerous_patterns = [
-        re.compile(r"curl"),
-        re.compile(r"wget"),
-        re.compile(r"(?:ba|z|k)?shs+-c"),
-        re.compile(r"e" + r"val"),
+        re.compile(r"\bcurl\b"),
+        re.compile(r"\bwget\b"),
+        re.compile(r"\b(?:ba|z|k)?sh\s+-c\b"),
+        re.compile(r"\be" + r"val\b"),
     ]
     for name, script in scripts.items():
         if any(pattern.search(script) for pattern in dangerous_patterns):
